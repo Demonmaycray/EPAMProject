@@ -12,7 +12,7 @@ resource "aws_instance" "Web" {
   associate_public_ip_address = true
   instance_type               = var.instance-type
   key_name                    = "terraform"
-  vpc_security_group_ids      = [aws_security_group.SG-Web.id]
+  vpc_security_group_ids      = [aws_security_group.sg-Web.id]
   subnet_id                   = aws_subnet.subnet_Web.id
 #  user_data                   = <<EOF
 # #!/bin/bush
