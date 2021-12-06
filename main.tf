@@ -12,7 +12,7 @@ resource "aws_instance" "Web" {
   associate_public_ip_address = true
   instance_type               = var.instance-type
   key_name                    = "terraform"
-  vpc_security_group_ids      = [aws_security_group.Web.id]
+  vpc_security_group_ids      = [aws_security_group.SG_Web.id]
   subnet_id                   = aws_subnet.subnet_Web.id
 #  user_data                   = <<EOF
 # #!/bin/bush
@@ -50,8 +50,8 @@ resource "aws_subnet" "subnet_Web" {
 
 # create SG 
 
-resource "aws_security_group" "Web" {
-  name        = "Web"
+resource "aws_security_group" "SG_Web" {
+  name        = "SG_Web"
   description = "Allow TCP/8080 & TCP/22 & TCP/80"
   vpc_id      = aws_vpc.vpc_Web.id
   ingress {
