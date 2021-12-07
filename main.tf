@@ -43,7 +43,7 @@ resource "aws_vpc" "vpc_Web" {
 # сreate subnet in Web
 
 resource "aws_subnet" "subnet_Web" {
-  vpc_id            = aws_vpc.vpc-Web.id
+  vpc_id            = aws_vpc.vpc_Web.id
   cidr_block        = "10.0.1.0/24"
 }
 
