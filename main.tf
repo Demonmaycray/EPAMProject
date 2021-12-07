@@ -47,6 +47,26 @@ resource "aws_subnet" "subnet_Web" {
   cidr_block        = "10.0.1.0/24"
 }
 
+
+#create Gateway
+
+resource "aws_internet_gateway" "web_gateway" {
+  vpc_id = aws_vpc.vpc_Web.id
+
+  tags = {
+    Name = "web_gateway"
+  }
+}
+
+
+#create RT
+
+resource "aws_route" "web_route" {
+  route_table_id         = aws_vpc.vpc_Web.main_route_table_id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = aws_internet_gateway.web_gateway.id
+}
+
 #-------------------------create policy------------------------------
 
 # create SG 
