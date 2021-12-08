@@ -8,7 +8,7 @@ provider "aws" {
 # latest instances
 
 resource "aws_instance" "Web" {
-  ami                         = "ami-083654bd07b5da81d"
+  ami                         = "ami-0a5a58b65d1714b9f"
   associate_public_ip_address = true
   instance_type               = var.instance-type
   key_name                    = "terraform"
