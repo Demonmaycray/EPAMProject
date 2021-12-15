@@ -8,19 +8,22 @@ provider "aws" {
 # latest instances
 
 resource "aws_instance" "Web" {
-  ami                         = "ami-0a5a58b65d1714b9f"
+  ami                         = "ami-013dcd831e88d219f"
   associate_public_ip_address = true
   instance_type               = var.instance-type
   key_name                    = "terraform"
   vpc_security_group_ids      = [aws_security_group.sg_Web.id]
   subnet_id                   = aws_subnet.subnet_Web.id
-#  user_data                   = <<EOF
-# #!/bin/bush
-# sudo apt update
-# sudo apt install apache2
-# sudo ufw allow 'Apache'
-# sudo systemctl status apache2
-#    EOF
+  user_data                   = <<EOF
+  #!/bin/bush
+  sudo apt update
+  sudo apt install apache2
+  sudo ufw allow 'Apache'
+  sudo systemctl status apache2
+  sudo mkdir /var/www/spring-petclinic
+  sudo chown -R $USER:$USER /var/www/your_domain
+  sudo chmod -R 755 /var/www/spring-petclinic
+    EOF
 
   tags = {
        Name  = "Web_server"
